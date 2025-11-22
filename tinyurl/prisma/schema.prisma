@@ -6,7 +6,7 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -14,7 +14,7 @@ model Session {
   id        Int      @id @default(autoincrement())
   token     String   @unique
   createdAt DateTime @default(now())
-  expiresAt DateTime @default(dbgenerated("(NOW() + INTERVAL 7 DAY)")) // For MySQL
+  expiresAt DateTime @default(dbgenerated("(NOW() + INTERVAL '7 days')"))
 }
 
 model Link {

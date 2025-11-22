@@ -7,7 +7,7 @@ import customAlert from '../helpers/popup'
 export default function Dashboard({ sessionId }) {
   const router = useRouter();
   const [links, setLinks] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   // --- Helper function for alerts and confirm ---
   // JavaScript version (no type annotations)
@@ -50,7 +50,6 @@ export default function Dashboard({ sessionId }) {
     const confirmed = await showDialog({ message: "Delete this link?", type: "confirm" });
     if (!confirmed) return;
 
-    setLoading(true);
     try {
       const res = await fetch("/api/links/delete_link", {
         method: "POST",

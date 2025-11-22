@@ -28,7 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                     <div className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 flex flex-col items-center">
 
                               {/* Header */}
-                              <header className="w-full py-6 bg-gradient-to-r from-blue-600 to-blue-400 shadow-md flex justify-center z-50 relative">
+                              <header className="w-full py-6 bg-gradient-to-r from-blue-600 to-blue-400 shadow-md flex justify-center relative">
                                         <h1 className="text-4xl font-extrabold text-white text-center select-none">
                                                   TinyLink App
                                         </h1>
@@ -47,7 +47,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                               </main>
 
                               {/* Sticky Footer */}
-                              <footer className="fixed bottom-0 left-0 w-full py-4 bg-gray-100 text-gray-600 text-center z-50 shadow-md">
+                              <footer className="fixed bottom-0 left-0 w-full py-4 bg-gray-100 text-gray-600 text-center  shadow-md">
                                         &copy; {new Date().getFullYear()} TinyLink App
                               </footer>
                     </div>

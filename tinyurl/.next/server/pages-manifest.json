@@ -1,12 +1,9 @@
 {
   "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
   "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/components/formcomponent": "pages/components/formcomponent.js",
-  "/api/links/link_get_all_session_urls": "pages/api/links/link_get_all_session_urls.js",
-  "/api/links/link_update_get_post": "pages/api/links/link_update_get_post.js",
-  "/api/links/delete_link": "pages/api/links/delete_link.js",
   "/api/sessions/sessions": "pages/api/sessions/sessions.js",
-  "/api/links/slug_links": "pages/api/links/slug_links.js"
+  "/components/formcomponent": "pages/components/formcomponent.js",
+  "/api/links/link_get_all_session_urls": "pages/api/links/link_get_all_session_urls.js"
 }

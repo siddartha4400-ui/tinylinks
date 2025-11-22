@@ -8,6 +8,14 @@ npm install prisma@4.15.0 @prisma/client@4.15.0
 npx prisma init
 npx prisma generate
 npx prisma migrate dev 
+or
+npx prisma migrate dev --name init
+
+to restat all  tablesdata 
+npx prisma migrate reset
+
+for production
+npx prisma db push
 
 
 for developments 
@@ -54,3 +62,6 @@ npm install --save-dev @types/uuid
 react tables installed 
 
 npm install @tanstack/react-table
+
+
+tinylink_db
