@@ -20,6 +20,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
                     /^\/components\/.*/,
                     /^\/dashboard\/.*/,
                     /^\/healthz\/?$/,
+                    /^\/api\/?$/,
           ];
 
           const isAllowed = allowedRegex.some(rx => rx.test(pathname));

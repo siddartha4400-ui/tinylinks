@@ -3,7 +3,6 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/api/sessions/sessions": "pages/api/sessions/sessions.js",
   "/components/formcomponent": "pages/components/formcomponent.js",
-  "/api/links/link_get_all_session_urls": "pages/api/links/link_get_all_session_urls.js"
+  "/api/sessions/sessions": "pages/api/sessions/sessions.js"
 }
