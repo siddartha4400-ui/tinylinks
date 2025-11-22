@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `session` MODIFY `expiresAt` DATETIME(3) NOT NULL DEFAULT (NOW() + INTERVAL 7 DAY);

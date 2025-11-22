@@ -1,0 +1,56 @@
+# Install Next.js
+npm install next@14.2.33 react@18.2.0 react-dom@18.2.0
+
+# Install Prisma 4
+npm install prisma@4.15.0 @prisma/client@4.15.0
+
+
+npx prisma init
+npx prisma generate
+npx prisma migrate dev 
+
+
+for developments 
+
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+
+
+installing tailwind 
+
+npm install -D tailwindcss@3 postcss@8 autoprefixer@10
+npx tailwindcss init -p
+
+in =>tailwind.config.js
+
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./app/**/*.{ts,tsx}",
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}"
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+create styles=>dlobal.css
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+installed uuid
+
+npm install uuid
+npm install --save-dev @types/uuid
+
+react tables installed 
+
+npm install @tanstack/react-table
