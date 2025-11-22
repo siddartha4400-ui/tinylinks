@@ -3,7 +3,7 @@ import React, { useMemo, useState, useEffect } from "react";
 import Link from "next/link";
 import { useReactTable, getCoreRowModel, flexRender } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
-import customAlert from '../helpers/popup'
+import customAlert from '../helpers/showPopup'
 export default function Dashboard({ sessionId }) {
   const router = useRouter();
   const [links, setLinks] = useState([]);

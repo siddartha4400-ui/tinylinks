@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import customAlert from '../../helpers/popup';
+import customAlert from "../../helpers/showPopup";
 
 export default function FormComponent(props) {
   const router = useRouter();
@@ -14,7 +14,10 @@ export default function FormComponent(props) {
     code: "",
     error: "",
   });
-  const [loading, setLoading] = useState(false); // separate loading state
+
+  // TWO SEPARATE LOADING STATES
+  const [loadingFetch, setLoadingFetch] = useState(false);   // for GET
+  const [loadingSubmit, setLoadingSubmit] = useState(false); // for POST
 
   const APP_URL = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 
@@ -22,7 +25,8 @@ export default function FormComponent(props) {
   useEffect(() => {
     if (!id) return;
 
-    setLoading(true); // show loader
+    setLoadingFetch(true);
+
     fetch(`/api/links/link_update_get_post?id=${id}`)
       .then((res) => res.json())
       .then((data) => {
@@ -34,12 +38,11 @@ export default function FormComponent(props) {
             error: "",
           });
         }
-        setLoading(false); // hide loader
+        setLoadingFetch(false);
       })
-      .catch((err) => {
-        console.error(err);
+      .catch(() => {
         setForm((prev) => ({ ...prev, error: "Failed to fetch record" }));
-        setLoading(false); // hide loader
+        setLoadingFetch(false);
       });
   }, [id]);
 
@@ -59,23 +62,22 @@ export default function FormComponent(props) {
     setForm((prev) => ({ ...prev, error: "" }));
 
     if (!form.targetUrl) {
-      setForm((prev) => ({ ...prev, error: "Please enter a URL" }));
-      return;
-    }
-    if (!isValidUrl(form.targetUrl)) {
-      setForm((prev) => ({ ...prev, error: "Invalid URL format" }));
-      return;
+      return setForm((prev) => ({ ...prev, error: "Please enter a URL" }));
     }
 
-    setLoading(true); // show loader during submit
+    if (!isValidUrl(form.targetUrl)) {
+      return setForm((prev) => ({ ...prev, error: "Invalid URL format" }));
+    }
+
+    setLoadingSubmit(true); // ONLY submit loader
 
     const payload = id
-      ? { original_url: form.targetUrl } // update
+      ? { original_url: form.targetUrl }
       : {
         code: form.code || Math.random().toString(36).substring(2, 8),
         original_url: form.targetUrl,
         session_id: props.sessionId?.id || 1,
-      }; // create
+      };
 
     const endpoint = id
       ? `/api/links/link_update_get_post?id=${id}`
@@ -90,7 +92,7 @@ export default function FormComponent(props) {
 
       if (res.ok) {
         customAlert(id ? "Link updated!" : "Link created!", "success", 2000);
-        router.push("/"); // redirect after success
+        router.push("/");
       } else {
         const body = await res.json();
         setForm((prev) => ({
@@ -99,15 +101,14 @@ export default function FormComponent(props) {
         }));
       }
     } catch (err) {
-      console.error(err);
       setForm((prev) => ({ ...prev, error: "Network error" }));
     } finally {
-      setLoading(false); // hide loader
+      setLoadingSubmit(false);
     }
   };
 
-  // Show loader while fetching data
-  if (loading) {
+  // Show loader while fetching existing link
+  if (loadingFetch) {
     return (
       <div className="p-6 max-w-4xl mx-auto text-center text-gray-500">
         Loading...
@@ -122,6 +123,7 @@ export default function FormComponent(props) {
       </h1>
 
       <form onSubmit={handleSubmit} className="mb-6 space-y-4">
+        {/* Input URL */}
         <div>
           <label className="block mb-1 font-medium">Paste your URL here</label>
           <input
@@ -132,6 +134,7 @@ export default function FormComponent(props) {
           />
         </div>
 
+        {/* Short URL display */}
         <div>
           <label className="block mb-1 font-medium">Shortened URL</label>
           <input
@@ -143,13 +146,20 @@ export default function FormComponent(props) {
           />
         </div>
 
+        {/* Submit button */}
         <div>
           <button
             type="submit"
-            disabled={loading}
+            disabled={loadingSubmit}
             className="w-full px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition"
           >
-            {loading ? (id ? "Updating..." : "Creating...") : id ? "Update" : "Create"}
+            {loadingSubmit
+              ? id
+                ? "Updating..."
+                : "Creating..."
+              : id
+                ? "Update"
+                : "Create"}
           </button>
         </div>
 
