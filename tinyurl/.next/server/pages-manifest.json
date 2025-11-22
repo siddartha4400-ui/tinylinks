@@ -3,6 +3,5 @@
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
-  "/components/formcomponent": "pages/components/formcomponent.js",
-  "/api/sessions/sessions": "pages/api/sessions/sessions.js"
+  "/components/formcomponent": "pages/components/formcomponent.js"
 }
