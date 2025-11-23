@@ -1,9 +1,9 @@
 {
-  "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
+  "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/": "pages/index.js",
   "/components/video/video": "pages/components/video/video.js",
-  "/api/links/link_get_all_session_urls": "pages/api/links/link_get_all_session_urls.js",
-  "/api/sessions/sessions": "pages/api/sessions/sessions.js"
+  "/api/sessions/sessions": "pages/api/sessions/sessions.js",
+  "/api/links/link_get_all_session_urls": "pages/api/links/link_get_all_session_urls.js"
 }
